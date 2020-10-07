@@ -14,7 +14,7 @@ use Hackathon\Game\Result;
 				MA STRATEGIE
 	
 	- jouer papie au 1er tour
-	- jouer ensuite le choix pour battre le move précedent de l'adversaire
+	- jouer ensuite le choix pour battre le move précedent de l'adversaire ou l'inverse si je gagne pas assez
 	- si il joue que le même, je joue de quoi le battre
 	- si il en joue très souvent un, je joue de quoi battre celui la
 	- si je perd trop, je commence d'abord par jouer comme lui
@@ -29,31 +29,7 @@ class TirahnnPlayer extends Player
 
     public function getChoice()
     {
-        // -------------------------------------    -----------------------------------------------------
-        // How to get my Last Choice           ?    $this->result->getLastChoiceFor($this->mySide) -- if 0 (first round)
-        // How to get the opponent Last Choice ?    $this->result->getLastChoiceFor($this->opponentSide) -- if 0 (first round)
-        // -------------------------------------    -----------------------------------------------------
-        // How to get my Last Score            ?    $this->result->getLastScoreFor($this->mySide) -- if 0 (first round)
-        // How to get the opponent Last Score  ?    $this->result->getLastScoreFor($this->opponentSide) -- if 0 (first round)
-        // -------------------------------------    -----------------------------------------------------
-        // How to get all the Choices          ?    $this->result->getChoicesFor($this->mySide)
-        // How to get the opponent Last Choice ?    $this->result->getChoicesFor($this->opponentSide)
-        // -------------------------------------    -----------------------------------------------------
-        // How to get my Last Score            ?    $this->result->getLastScoreFor($this->mySide)
-        // How to get the opponent Last Score  ?    $this->result->getLastScoreFor($this->opponentSide)
-        // -------------------------------------    -----------------------------------------------------
-        // How to get the stats                ?    $this->result->getStats()
-        // How to get the stats for me         ?    $this->result->getStatsFor($this->mySide)
-        //          array('name' => value, 'score' => value, 'friend' => value, 'foe' => value
-        // How to get the stats for the oppo   ?    $this->result->getStatsFor($this->opponentSide)
-        //          array('name' => value, 'score' => value, 'friend' => value, 'foe' => value
-        // -------------------------------------    -----------------------------------------------------
-        // How to get the number of round      ?    $this->result->getNbRound()
-        // -------------------------------------    -----------------------------------------------------
-        // How can i display the result of each round ? $this->prettyDisplay()
-        // -------------------------------------    -----------------------------------------------------
 
-		
 		//First Round
 		if ($this->result->getNbRound() === 0)
 			return parent::paperChoice();
@@ -114,7 +90,7 @@ class TirahnnPlayer extends Player
 			
 		}
 
-		//loosing ? lets play stupid
+		//loosing ? lets play even more stupid
 		if ($this->result->getLastChoiceFor($this->mySide) === parent::paperChoice())
 				return parent::rockChoice();
 		else if ($this->result->getLastChoiceFor($this->mySide) === parent::scissorsChoice())
