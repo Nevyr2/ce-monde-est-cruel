@@ -42,7 +42,7 @@ class TirahnnPlayer extends Player
         // -------------------------------------    -----------------------------------------------------
 
 
-        return parent::rockChoice();
+        return parent::paperChoice();
 
     }
 };
