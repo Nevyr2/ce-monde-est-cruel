@@ -14,7 +14,7 @@ use Hackathon\Game\Result;
 				MA STRATEGIE
 	
 	- jouer papie au 1er tour
-	- jouer ensuite le choix pour battre le move précedent de l'adversaire ou l'inverse si je gagne pas assez
+	- jouer ensuite le choix pour battre le move précedent de l'adversaire si ca marche, sinon de quoi battre le move qu'il aurait fait pour battre le mien (compliqué)
 	- si il joue que le même, je joue de quoi le battre
 	- si il en joue très souvent un, je joue de quoi battre celui la
 	- si je perd trop, je commence d'abord par jouer comme lui
