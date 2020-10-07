@@ -41,13 +41,49 @@ class TirahnnPlayer extends Player
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
 
-
 		
-		if ($this->result->getLastChoiceFor($this->opponentSide) == parent::paperChoice())
+		
+		if ($this->result->getNbRound() === 0)
+			return parent::paperChoice();
+		
+		$moves = $this->result->getChoicesFor($this->opponentSide);
+		
+		$onlyRock = false;
+		$onlyPaper = false;
+		$onlyScissors = false;
+		
+		$gotRock = false;
+		$gotPaper = false;
+		$gotScissors = false;
+		
+		foreach ($moves as $move) {
+            if ($move === parent::paperChoice())
+				$gotPaper = true;
+			if ($move === parent::scissorsChoice())
+				$gotScissors = true;
+			if ($move === parent::rockChoice())
+				$gotRock = true;
+        }
+		
+		if ($gotPaper && !$gotRock && !$gotScissors)
+			$onlyPaper = true;
+		if (!$gotPaper && $gotRock && !$gotScissors)
+			$onlyRock = true;
+		if (!$gotPaper && !$gotRock && $gotScissors)
+			$onlyScissors = true;
+		
+		if ($onlyPaper)
+			return parent::scissorsChoice();
+		if ($onlyRock)
+			return parent::paperChoice();
+		if ($onlyScissors)
+			return parent::rockChoice();
+			
+		if ($this->result->getLastChoiceFor($this->opponentSide) === parent::paperChoice())
 		{
 			return parent::scissorsChoice();
 		}
-		else if ($this->result->getLastChoiceFor($this->opponentSide) == parent::scissorsChoice())
+		else if ($this->result->getLastChoiceFor($this->opponentSide) === parent::scissorsChoice())
 		{
 			return parent::rockChoice();
 		}
