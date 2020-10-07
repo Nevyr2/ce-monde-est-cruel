@@ -90,7 +90,7 @@ class TirahnnPlayer extends Player
 			
 		}
 
-		//loosing ? lets play even more stupid
+		//still loosing ? lets play even more stupid (cette stratégie bat à tous les coups celle juste au dessus)
 		if ($this->result->getLastChoiceFor($this->mySide) === parent::paperChoice())
 				return parent::rockChoice();
 		else if ($this->result->getLastChoiceFor($this->mySide) === parent::scissorsChoice())
