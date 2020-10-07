@@ -50,9 +50,9 @@ class TirahnnPlayer extends Player
 		
 		if ($gotPaper && !$gotRock && !$gotScissors && $this->result->getNbRound() > 20)
 			return parent::scissorsChoice();
-		if (!$gotPaper && $gotRock && !$gotScissors & $this->result->getNbRound() > 20)
+		if (!$gotPaper && $gotRock && !$gotScissors && $this->result->getNbRound() > 20)
 			return parent::paperChoice();
-		if (!$gotPaper && !$gotRock && $gotScissors & $this->result->getNbRound() > 20)
+		if (!$gotPaper && !$gotRock && $gotScissors && $this->result->getNbRound() > 20)
 			return parent::rockChoice();	
 		
 		
