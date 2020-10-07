@@ -7,7 +7,7 @@ use Hackathon\Game\Result;
 /**
  * Class TirahnnPlayers
  * @package Hackathon\PlayerIA
- * @author YOUR NAME HERE
+ * @author Clément Davin
  */
 class TirahnnPlayer extends Player
 {
