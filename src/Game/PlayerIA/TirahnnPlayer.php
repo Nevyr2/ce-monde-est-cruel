@@ -36,6 +36,28 @@ class TirahnnPlayer extends Player
 		
 		$stats = $this->result->getStatsFor($this->mySide);
 		
+		//Repetitive move ?
+		$gotRock = false;
+		$gotPaper = false;
+		$gotScissors = false;
+		
+		if ($stats['scissors'] !== 0)
+			$gotScissors = true;
+		if ($stats['rock'] !== 0)
+			$gotRock = true;
+		if ($stats['paper'] !== 0)
+			$gotPaper = true;
+		
+		if ($gotPaper && !$gotRock && !$gotScissors && $this->result->getNbRound() > 20)
+			return parent::scissorsChoice();
+		if (!$gotPaper && $gotRock && !$gotScissors & $this->result->getNbRound() > 20)
+			return parent::paperChoice();
+		if (!$gotPaper && !$gotRock && $gotScissors & $this->result->getNbRound() > 20)
+			return parent::rockChoice();	
+		
+		
+
+		
 		//Chain Loose ? Let's change strat
 		if ($this->result->getNbRound() > 30 && $this->result->getNbRound() < 50 && $stats['score'] < $this->result->getNbRound())
 			return $this->result->getLastChoiceFor($this->opponentSide);
@@ -50,25 +72,7 @@ class TirahnnPlayer extends Player
 		}
 		
 		
-		//Repetitive move ?
-		$gotRock = false;
-		$gotPaper = false;
-		$gotScissors = false;
-		
-		if ($stats['scissors'] !== 0)
-			$gotScissors = true;
-		if ($stats['rock'] !== 0)
-			$gotRock = true;
-		if ($stats['paper'] !== 0)
-			$gotPaper = true;
-		
-		if ($gotPaper && !$gotRock && !$gotScissors)
-			return parent::scissorsChoice();
-		if (!$gotPaper && $gotRock && !$gotScissors)
-			return parent::paperChoice();
-		if (!$gotPaper && !$gotRock && $gotScissors)
-			return parent::rockChoice();	
-		
+
 		
 		//Lot of one ?
 		if ($this->result->getNbRound() > 20 && $stats['scissors'] > $stats['paper'] + $stats['rock'])
