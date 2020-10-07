@@ -42,6 +42,16 @@ class TirahnnPlayer extends Player
         // -------------------------------------    -----------------------------------------------------
 
 
+		
+		if ($this->result->getLastChoiceFor($this->opponentSide) == parent::paperChoice())
+		{
+			return parent::scissorsChoice();
+		}
+		else if ($this->result->getLastChoiceFor($this->opponentSide) == parent::scissorsChoice())
+		{
+			return parent::rockChoice();
+		}
+		
         return parent::paperChoice();
 
     }
